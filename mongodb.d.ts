@@ -1,4 +1,5 @@
 // Type definitions for node-mongodb-native
+import {Promise} from "es6-promise";
 
 // Class documentation : http://mongodb.github.io/node-mongodb-native/2.1/api/MongoClient.html
 export interface MongoClientConnectOptions {
