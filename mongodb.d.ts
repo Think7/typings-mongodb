@@ -10,7 +10,7 @@
 
 import {EventEmitter} from 'events';
 import {Promise} from "es6-promise";
-  
+
 // Class documentation : http://mongodb.github.io/node-mongodb-native/2.1/api/MongoClient.html
 export class MongoClient {
     constructor();
@@ -150,7 +150,7 @@ export interface MongosOptions {
     socketOptions?: SocketOptions;
 }
   
-// Class documentation : http://mongodb.github.io/node-mongodb-native/api-generated/db.html
+// Class documentation : http://mongodb.github.io/node-mongodb-native/2.1/api/Db.html
 export class Db extends EventEmitter {
     constructor(databaseName: string, serverConfig: Server | ReplSet | Mongos, options?: DbCreateOptions);
 
@@ -332,7 +332,7 @@ export interface IndexOptions {
 }
   
 // http://mongodb.github.io/node-mongodb-native/2.1/api/Admin.html
-export class Admin {
+export interface Admin {
     // http://mongodb.github.io/node-mongodb-native/2.1/api/Admin.html#addUser
     addUser(username: string, password: string, callback: MongoCallback<any>): void;
     addUser(username: string, password: string, options?: AddUserOptions): Promise<any>;
@@ -562,7 +562,7 @@ export class Timestamp {
 }
 
 // Documentation : http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html
-export class Collection {
+export interface Collection {
     // Get the collection name.
     collectionName: string;
     // Get the full collection namespace.
@@ -883,7 +883,7 @@ export interface CollectionOptions {
 }
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/OrderedBulkOperation.html
-export class OrderedBulkOperation {
+export interface OrderedBulkOperation {
     length: number;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/OrderedBulkOperation.html#execute
     execute(callback: MongoCallback<BulkWriteResult>): void;
@@ -896,13 +896,13 @@ export class OrderedBulkOperation {
 }
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/BulkWriteResult.html
-export class BulkWriteResult {
-    public ok: boolean;
-    public nInserted: number;
-    public nUpdated: number;
-    public nUpserted: number;
-    public nModified: number;
-    public nRemoved: number;
+export interface BulkWriteResult {
+    ok: boolean;
+    nInserted: number;
+    nUpdated: number;
+    nUpserted: number;
+    nModified: number;
+    nRemoved: number;
 
     getInsertedIds(): Array<Object>;
     getLastOp(): Object;
@@ -935,7 +935,7 @@ export interface WriteConcernError {
 }
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/FindOperatorsOrdered.html
-export class FindOperatorsOrdered {
+export interface FindOperatorsOrdered {
     delete(): OrderedBulkOperation;
     deleteOne(): OrderedBulkOperation;
     replaceOne(doc: Object): OrderedBulkOperation;
@@ -945,7 +945,7 @@ export class FindOperatorsOrdered {
 }
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/UnorderedBulkOperation.html
-export class UnorderedBulkOperation {
+export interface UnorderedBulkOperation {
     //http://mongodb.github.io/node-mongodb-native/2.1/api/UnorderedBulkOperation.html#execute
     execute(callback: MongoCallback<BulkWriteResult>): void;
     execute(options: FSyncOptions): Promise<BulkWriteResult>;
@@ -957,7 +957,7 @@ export class UnorderedBulkOperation {
 }
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/FindOperatorsUnordered.html
-export class FindOperatorsUnordered {
+export interface FindOperatorsUnordered {
     length: number;
     remove(): UnorderedBulkOperation;
     removeOne(): UnorderedBulkOperation;
@@ -1063,7 +1063,7 @@ export interface Stream { }
 export type CursorResult = any | void | boolean;
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/Cursor.html
-export class Cursor extends EventEmitter implements Readable {
+export interface Cursor extends Readable, NodeJS.EventEmitter  {
 
     sortValue: string;
     timeout: boolean;
@@ -1180,7 +1180,7 @@ export interface EndCallback {
 export type AggregationCursorResult = any | void;
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/AggregationCursor.html
-export class AggregationCursor extends EventEmitter implements Readable {
+export interface AggregationCursor extends Readable, NodeJS.EventEmitter  {
     // http://mongodb.github.io/node-mongodb-native/2.1/api/AggregationCursor.html#batchSize
     batchSize(value: number): AggregationCursor;
     // http://mongodb.github.io/node-mongodb-native/2.1/api/AggregationCursor.html#clone
@@ -1244,7 +1244,7 @@ export class AggregationCursor extends EventEmitter implements Readable {
 }
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/CommandCursor.html
-export class CommandCursor extends EventEmitter implements Readable {
+export interface CommandCursor extends Readable, NodeJS.EventEmitter {
     // http://mongodb.github.io/node-mongodb-native/2.1/api/CommandCursor.html#batchSize
     batchSize(value: number): CommandCursor;
     // http://mongodb.github.io/node-mongodb-native/2.1/api/CommandCursor.html#clone
