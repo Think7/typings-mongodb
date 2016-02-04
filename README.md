@@ -5,5 +5,5 @@ The type definition for [mongodb](https://github.com/mongodb/node-mongodb-native
 
 1 You must install the node ambient module
 ```
-typings --install node --ambient --save
+typings install node --ambient --save
 ```

@@ -231,11 +231,11 @@ export class Db extends EventEmitter {
     removeUser(username: string, callback: MongoCallback<any>): void;
     removeUser(username: string, options?: { w?: number | string, wtimeout?: number, j?: boolean }): Promise<any>;
     removeUser(username: string, options: { w?: number | string, wtimeout?: number, j?: boolean }, callback: MongoCallback<any>): void;
-    //http://mongodb.github.io/node-mongodb-native/2.1/api/Db.html#renameCollection
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/Db.html#renameCollection
     renameCollection(fromCollection: string, toCollection: string, callback: MongoCallback<Collection>): void;
     renameCollection(fromCollection: string, toCollection: string, options?: { dropTarget?: boolean }): Promise<Collection>;
     renameCollection(fromCollection: string, toCollection: string, options: { dropTarget?: boolean }, callback: MongoCallback<Collection>): void;
-    //http://mongodb.github.io/node-mongodb-native/2.1/api/Db.html#stats
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/Db.html#stats
     stats(callback: MongoCallback<any>): void;
     stats(options?: { scale?: number }): Promise<any>;;
     stats(options: { scale?: number }, callback: MongoCallback<any>): void;
