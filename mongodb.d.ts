@@ -897,7 +897,7 @@ export interface OrderedBulkOperation {
   
 //http://mongodb.github.io/node-mongodb-native/2.1/api/BulkWriteResult.html
 export interface BulkWriteResult {
-    ok: boolean;
+    ok: number;
     nInserted: number;
     nUpdated: number;
     nUpserted: number;
