@@ -615,6 +615,13 @@ export interface Collection {
     dropIndexes(callback?: MongoCallback<any>): void;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#find
     find(query: Object): Cursor;
+    //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOne
+    /** @deprecated */
+    findOne(filter: Object, callback: MongoCallback<any>):void;
+    /** @deprecated */
+    findOne(filter: Object, options?: FindOneOptions): Promise<any>;
+    /** @deprecated */
+    findOne(filter: Object, options: FindOneOptions, callback: MongoCallback<any>):void;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOneAndDelete
     findOneAndDelete(filter: Object, callback: MongoCallback<FindAndModifyWriteOpResultObject>): void;
     findOneAndDelete(filter: Object, options?: { projection?: Object, sort?: Object, maxTimeMS?: number }): Promise<FindAndModifyWriteOpResultObject>;
@@ -966,7 +973,31 @@ export interface FindOperatorsUnordered {
     updateOne(doc: Object): UnorderedBulkOperation;
     upsert(): FindOperatorsUnordered;
 }
-  
+
+//http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOne
+export interface FindOneOptions {
+    limit?: number,
+    sort?: Array<any>|Object,
+    fields?: Object,
+    skip?: number,
+    hint?: Object,
+    explain?: boolean,
+    snapshot?: boolean,
+    timeout?: boolean,
+    tailable?: boolean,
+    batchSize?: number,
+    returnKey?: boolean,
+    maxScan?: number,
+    min?: number,
+    max?: number,
+    showDiskLoc?: boolean,
+    comment?: string,
+    raw?: boolean,
+    readPreference?: ReadPreference | string,
+    partial?: boolean,
+    maxTimeMs?: number
+}
+
 //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#~insertWriteOpResult
 export interface InsertWriteOpResult {
     insertedCount: number;
