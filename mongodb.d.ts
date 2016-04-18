@@ -616,8 +616,11 @@ export interface Collection {
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#find
     find(query: Object): Cursor;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOne
+    /** @deprecated */
     findOne(filter: Object, callback: MongoCallback<any>):void;
+    /** @deprecated */
     findOne(filter: Object, options?: FindOneOptions): Promise<any>;
+    /** @deprecated */
     findOne(filter: Object, options: FindOneOptions, callback: MongoCallback<any>):void;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOneAndDelete
     findOneAndDelete(filter: Object, callback: MongoCallback<FindAndModifyWriteOpResultObject>): void;
