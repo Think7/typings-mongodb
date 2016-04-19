@@ -7,3 +7,6 @@ The type definition for [mongodb](https://github.com/mongodb/node-mongodb-native
 ```
 typings install node --ambient --save
 ```
+
+# License
+MIT
