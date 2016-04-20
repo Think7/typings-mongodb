@@ -614,7 +614,9 @@ export interface Collection {
     dropIndexes(): Promise<any>;
     dropIndexes(callback?: MongoCallback<any>): void;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#find
-    find(query: Object): Cursor;
+    find(query?: Object): Cursor;
+    /** @deprecated */
+    find(query: Object, fields?: Object, skip?: number, limit?: number, timeout?: number): Cursor;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOne
     /** @deprecated use find().limit(1).next(function(err, doc){}) */
     findOne(filter: Object, callback: MongoCallback<any>): void;
@@ -702,6 +704,11 @@ export interface Collection {
     replaceOne(filter: Object, doc: Object, callback: MongoCallback<UpdateWriteOpResult>): void;
     replaceOne(filter: Object, doc: Object, options?: ReplaceOneOptions): Promise<UpdateWriteOpResult>;
     replaceOne(filter: Object, doc: Object, options: ReplaceOneOptions, callback: MongoCallback<UpdateWriteOpResult>): void;
+    //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#save
+    /** @deprecated Use insertOne, insertMany, updateOne or updateMany */
+    save(doc: Object, callback: MongoCallback<WriteOpResult>): void;
+    save(doc: Object, options?: CollectionOptions): Promise<WriteOpResult>;
+    save(doc: Object, options: CollectionOptions, callback: MongoCallback<WriteOpResult>): void;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#stats
     stats(callback: MongoCallback<CollStats>): void;
     stats(options?: { scale: number }): Promise<CollStats>;
