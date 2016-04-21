@@ -575,7 +575,7 @@ export interface Collection {
     hint: any;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#aggregate
     aggregate(pipeline: Object[], callback: MongoCallback<any>): AggregationCursor;
-    aggregate(pipeline: Object[], options: CollectionAggregationOptions, callback: MongoCallback<any>): AggregationCursor;
+    aggregate(pipeline: Object[], options?: CollectionAggregationOptions, callback?: MongoCallback<any>): AggregationCursor;
     //http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#bulkWrite
     bulkWrite(operations: Object[], callback: MongoCallback<BulkWriteOpResultObject>): void;
     bulkWrite(operations: Object[], options?: CollectionBluckWriteOptions): Promise<BulkWriteOpResultObject>;
