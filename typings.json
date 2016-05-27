@@ -4,7 +4,7 @@
   "dependencies": {
     "es6-promise": "registry:npm/es6-promise#3.0.0+20160211003958"
   },
-  "ambientDependencies": {
-    "node": "registry:dt/node#4.0.0+20160311162451"
+  "globalDependencies": {
+    "node": "registry:dt/node#6.0.0+20160524002506"
   }
 }
