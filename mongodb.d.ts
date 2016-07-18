@@ -1384,7 +1384,7 @@ export interface GridFSBucketOptions {
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#~errorCallback
 export interface GridFSBucketErrorCallback {
-  (error: MongoError): void;
+  (err?: MongoError): void;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#find
