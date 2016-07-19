@@ -1357,9 +1357,9 @@ export interface CommandCursor extends Readable, NodeJS.EventEmitter {
 export class GridFSBucket {
   constructor(db: Db, options?: GridFSBucketOptions);
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#delete
-  delete(id: string | ObjectID, callback: GridFSBucketErrorCallback): void;
+  delete(id: string | ObjectID, callback?: GridFSBucketErrorCallback): void;
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#drop
-  drop(callback: GridFSBucketErrorCallback): void;
+  drop(callback?: GridFSBucketErrorCallback): void;
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#find
   find(filter?: any, options?: GridFSBucketFindOptions): Cursor;
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openDownloadStream
@@ -1367,19 +1367,19 @@ export class GridFSBucket {
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openDownloadStreamByName
   openDownloadStreamByName(filename: string, options?: Object): GridFSBucketReadStream;
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStream
-  openUploadStream(filename: string, options: Object): GridFSBucketWriteStream;
+  openUploadStream(filename: string, options?: Object): GridFSBucketWriteStream;
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStreamWithId
   openUploadStreamWithId(id: string | ObjectID, filename: string, options?: Object): GridFSBucketWriteStream;
   // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#rename
-  rename(id: string | ObjectID, filename: string, callback: GridFSBucketErrorCallback): void;
+  rename(id: string | ObjectID, filename: string, callback?: GridFSBucketErrorCallback): void;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html
 export interface GridFSBucketOptions {
-  bucketName?: string,
-  chunkSizeBytes?: number,
-  writeConcern?: Object,
-  ReadPreference?: Object
+  bucketName?: string;
+  chunkSizeBytes?: number;
+  writeConcern?: Object;
+  ReadPreference?: Object;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#~errorCallback
@@ -1389,12 +1389,12 @@ export interface GridFSBucketErrorCallback {
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#find
 export interface GridFSBucketFindOptions {
-  batchSize?: number,
-  limit?: number,
-  maxTimeMS?: number,
-  noCursorTimeout?: boolean,
-  skip?: number,
-  sort?: Object
+  batchSize?: number;
+  limit?: number;
+  maxTimeMS?: number;
+  noCursorTimeout?: boolean;
+  skip?: number;
+  sort?: Object;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketReadStream.html
