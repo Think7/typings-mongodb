@@ -1341,4 +1341,6 @@ export interface GridFSBucketFindOptions {
 export interface GridFSBucketReadStream extends Readable {}
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketWriteStream.html
-export interface GridFSBucketWriteStream extends Writable {}
+export interface GridFSBucketWriteStream extends Writable {
+    id: ObjectID;
+}
