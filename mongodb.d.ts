@@ -8,9 +8,9 @@
 
 // Use typings to install this type definition https://github.com/typings/typings
 
-import {EventEmitter} from "events";
-import {Readable, Writable} from "stream";
-import {Promise} from "es6-promise";
+import { EventEmitter } from "events";
+import { Readable, Writable } from "stream";
+import { Promise } from "es6-promise";
 
 // Class documentation : http://mongodb.github.io/node-mongodb-native/2.1/api/MongoClient.html
 export class MongoClient {
@@ -1295,52 +1295,79 @@ export interface CommandCursor extends Readable {
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html
 export class GridFSBucket {
-  constructor(db: Db, options?: GridFSBucketOptions);
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#delete
-  delete(id: string | ObjectID, callback?: GridFSBucketErrorCallback): void;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#drop
-  drop(callback?: GridFSBucketErrorCallback): void;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#find
-  find(filter?: any, options?: GridFSBucketFindOptions): Cursor;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openDownloadStream
-  openDownloadStream(id: string | ObjectID, options?: Object): GridFSBucketReadStream;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openDownloadStreamByName
-  openDownloadStreamByName(filename: string, options?: Object): GridFSBucketReadStream;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStream
-  openUploadStream(filename: string, options?: Object): GridFSBucketWriteStream;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStreamWithId
-  openUploadStreamWithId(id: string | ObjectID, filename: string, options?: Object): GridFSBucketWriteStream;
-  // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#rename
-  rename(id: string | ObjectID, filename: string, callback?: GridFSBucketErrorCallback): void;
+    constructor(db: Db, options?: GridFSBucketOptions);
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#delete
+    delete(id: ObjectID, callback?: GridFSBucketErrorCallback): void;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#drop
+    drop(callback?: GridFSBucketErrorCallback): void;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#find
+    find(filter?: Object, options?: GridFSBucketFindOptions): Cursor;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openDownloadStream
+    openDownloadStream(id: ObjectID, options?: { start: number, end: number }): GridFSBucketReadStream;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openDownloadStreamByName
+    openDownloadStreamByName(filename: string, options?: { revision: number, start: number, end: number }): GridFSBucketReadStream;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStream
+    openUploadStream(filename: string, options?: GridFSBucketOpenUploadStreamOptions): GridFSBucketWriteStream;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStreamWithId
+    openUploadStreamWithId(id: string | number | Object, filename: string, options?: GridFSBucketOpenUploadStreamOptions): GridFSBucketWriteStream;
+    // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#rename
+    rename(id: ObjectID, filename: string, callback?: GridFSBucketErrorCallback): void;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html
 export interface GridFSBucketOptions {
-  bucketName?: string;
-  chunkSizeBytes?: number;
-  writeConcern?: Object;
-  ReadPreference?: Object;
+    bucketName?: string;
+    chunkSizeBytes?: number;
+    writeConcern?: Object;
+    ReadPreference?: Object;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#~errorCallback
 export interface GridFSBucketErrorCallback {
-  (err?: MongoError): void;
+    (err?: MongoError): void;
 }
 
 // http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#find
 export interface GridFSBucketFindOptions {
-  batchSize?: number;
-  limit?: number;
-  maxTimeMS?: number;
-  noCursorTimeout?: boolean;
-  skip?: number;
-  sort?: Object;
+    batchSize?: number;
+    limit?: number;
+    maxTimeMS?: number;
+    noCursorTimeout?: boolean;
+    skip?: number;
+    sort?: Object;
 }
 
-// http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketReadStream.html
-export interface GridFSBucketReadStream extends Readable {}
+// https://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucket.html#openUploadStream
+export interface GridFSBucketOpenUploadStreamOptions {
+    chunkSizeBytes?: number,
+    metadata?: Object,
+    contentType?: string,
+    aliases?: Array<string>
+}
 
-// http://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketWriteStream.html
-export interface GridFSBucketWriteStream extends Writable {
-    id: ObjectID;
+// https://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketReadStream.html
+export class GridFSBucketReadStream extends Readable {
+    constructor(chunks: Collection, files: Collection, readPreference: Object, filter: Object, options?: GridFSBucketReadStreamOptions);
+}
+
+// https://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketReadStream.html
+export interface GridFSBucketReadStreamOptions {
+    sort?: number,
+    skip?: number,
+    start?: number,
+    end?: number
+}
+
+// https://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketWriteStream.html
+export class GridFSBucketWriteStream extends Writable{
+    constructor(bucket: GridFSBucket, filename:string, options?: GridFSBucketWriteStreamOptions);
+}
+
+// https://mongodb.github.io/node-mongodb-native/2.1/api/GridFSBucketWriteStream.html
+export interface GridFSBucketWriteStreamOptions {
+    id?: string | number | Object,
+    chunkSizeBytes?: number,
+    w?: number,
+    wtimeout?: number,
+    j?: number
 }
