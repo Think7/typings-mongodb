@@ -2,7 +2,12 @@
   "name": "typings-mongodb",
   "version": "1.0.0",
   "devDependencies": {
-    "mongodb": "^2.2.19"
+    "mongodb": "^2.2.19",
+    "typescript": "^2.1.4",
+    "typings": "^2.1.0"
+  },
+  "scripts": {
+    "postinstall": "typings bundle -o out/types.d.ts"
   },
   "license": "MIT",
   "keywords": [
