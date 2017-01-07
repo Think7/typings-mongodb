@@ -2,11 +2,15 @@
   "name": "typings-mongodb",
   "version": "1.0.0",
   "devDependencies": {
-    "mongodb": "2.1.x"
+    "mongodb": "^2.2.19"
   },
   "license": "MIT",
   "keywords": [
     "typings",
     "mongodb"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Think7/typings-mongodb.git"
+  }
 }

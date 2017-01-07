@@ -5,6 +5,7 @@
     },
     "files": [
         "mongodb.d.ts",
-        "typings/index.d.ts"
+        "typings/index.d.ts",
+        "test/test.ts"
     ]
 }
